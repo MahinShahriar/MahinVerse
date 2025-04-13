@@ -143,10 +143,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = None #sender's email-id
-EMAIL_HOST_PASSWORD = None #password associated with above email-id (not the regular password)
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER") #sender's email-id
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD") #password associated with above email-id (not the regular password)
 
 
 # Captcha Configuration
-RECAPTCHA_PUBLIC_KEY = None
-RECAPTCHA_PRIVATE_KEY = None
+RECAPTCHA_PUBLIC_KEY = os.environ.get("RECAPTCHA_PUBLIC_KEY")
+RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY")
