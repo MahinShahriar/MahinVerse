@@ -1,16 +1,38 @@
 FROM python:3.11-slim-buster
 
-WORKDIR /app
-
-
+# Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# install dependencies
-RUN pip install --upgrade pip
+# Set work directory
+WORKDIR /app
+
+# Install system packages
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    libpq-dev \
+    && apt-get clean
+
+# Install Node.js (for Tailwind)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs
+
+# Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy entire project
 COPY . .
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Tailwind build (assuming theme app has package.json)
+WORKDIR /app/theme
+RUN npm install && npm run build
+
+# Collect static and migrate
+WORKDIR /app
+RUN python manage.py collectstatic --noinput
+RUN python manage.py migrate
+
+
+CMD gunicorn your_project.wsgi:application --bind 0.0.0.0:8000
