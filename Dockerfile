@@ -33,4 +33,4 @@ WORKDIR /app
 RUN python manage.py collectstatic --noinput || true
 
 # Expose port and start Gunicorn
-ENTRYPOINT["gunicorn","MahinVerse.wsgi"]
+ENTRYPOINT [ "gunicorn", "MahinVerse.wsgi"]
