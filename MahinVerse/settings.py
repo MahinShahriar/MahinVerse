@@ -3,9 +3,9 @@ import os
 from pathlib import Path
 import dj_database_url
 
-# from dotenv import load_dotenv
-# # Initialise environment variables
-# load_dotenv()
+from dotenv import load_dotenv
+# Initialise environment variables
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -151,5 +151,5 @@ EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")           #sender's email-id
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")   #password associated with above email-id (not the regular password)
 
 
-RECAPTCHA_PUBLIC_KEY = os.environ.get("RECAPTCHA_PUBLIC_KEY")
-RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY")
+RECAPTCHA_PUBLIC_KEY = str(os.environ.get("RECAPTCHA_PUBLIC_KEY"))
+RECAPTCHA_PRIVATE_KEY = str(os.environ.get("RECAPTCHA_PRIVATE_KEY"))
