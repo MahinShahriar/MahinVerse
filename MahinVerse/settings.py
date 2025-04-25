@@ -16,7 +16,7 @@ JSON_FILE = os.path.join(BASE_DIR, 'config', 'countries.json')
 
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+DEBUG = os.environ.get("DEBUG")
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split()
 
 
