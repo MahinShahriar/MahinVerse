@@ -1,38 +1,36 @@
+# Use official Python image
 FROM python:3.11-slim-buster
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Set work directory
+# Create app directory
 WORKDIR /app
 
-# Install system packages
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
-    libpq-dev \
-    && apt-get clean
-
-# Install Node.js (for Tailwind)
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs
+    npm \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-# Copy entire project
+# Copy the entire app
 COPY . .
 
+# Build Tailwind CSS
 WORKDIR /app/theme
 RUN npm install && npm run build
+
+# Back to Django app root
 WORKDIR /app
 
-# Collect static and migrate
-
+# Collect static files (optional if you want static to serve via WhiteNoise or CDN)
 RUN python manage.py collectstatic --noinput
-RUN python manage.py migrate
 
-
-CMD gunicorn your_project.wsgi:application --bind 0.0.0.0:8000
+# Expose port and start Gunicorn
+CMD gunicorn MahinVerse.wsgi:application --bind 0.0.0.0:8000
