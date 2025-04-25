@@ -24,7 +24,7 @@ COPY . .
 
 # Build Tailwind CSS
 WORKDIR /app/theme
-RUN npm install && npm run build
+RUN npm install
 
 # Back to Django app root
 WORKDIR /app
