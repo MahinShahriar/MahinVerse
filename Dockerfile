@@ -30,7 +30,7 @@ RUN npm install
 WORKDIR /app
 
 # Collect static files (optional if you want static to serve via WhiteNoise or CDN)
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput || true
 
 # Expose port and start Gunicorn
 CMD gunicorn MahinVerse.wsgi:application --bind 0.0.0.0:8000
