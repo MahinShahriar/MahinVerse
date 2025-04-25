@@ -33,4 +33,4 @@ WORKDIR /app
 RUN python manage.py collectstatic --noinput || true
 
 # Expose port and start Gunicorn
-CMD gunicorn MahinVerse.wsgi:application --bind 0.0.0.0:8000
+ENTRYPOINT["gunicorn","MahinVerse.wsgi"]
