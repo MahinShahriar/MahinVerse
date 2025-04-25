@@ -26,11 +26,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Tailwind build (assuming theme app has package.json)
-WORKDIR /app/theme
-RUN npm install && npm run build
+
+RUN npm install && python manage.py tailwind install
 
 # Collect static and migrate
-WORKDIR /app
+
 RUN python manage.py collectstatic --noinput
 RUN python manage.py migrate
 
