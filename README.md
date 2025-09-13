@@ -16,10 +16,11 @@ MahinVerse is a showcase of my professional journey, skills, and projects. Built
 
 ## Technologies Used
 
-- **Frontend**: [List primary frontend framework/library, e.g., React, Next.js, Vue.js]
-- **Styling**: [CSS framework, e.g., Tailwind CSS, Styled Components]
-- **Animations**: [Library if applicable, e.g., Framer Motion]
-- **Deployment**: [Platform, e.g., Vercel, Netlify]
+- **Frontend**: [HTML, Django Template Engine, JavaScript]
+- **Styling**: [CSS framework, Tailwind CSS]
+- **Backend**: [Python, Django, JSON, SMTP-Server, Google reCaptcha]
+- **Database**: [PostgreSQL]
+- **Deployment**: [Docker, Gunicorn, whitenoise]
 
 *(Please refer to the codebase for further technical details.)*
 
@@ -32,14 +33,6 @@ This portfolio is tailored for HR professionals and recruitment teams to:
 - **Assess my coding practices and documentation standards**
 - **Get in touch for potential opportunities**
 
-## Contact
 
-If you are an HR representative or recruiter, I welcome you to explore my site and connect with me!
-
-- **Email**: [your.email@example.com]
-- **LinkedIn**: [Your LinkedIn URL]
-- **GitHub**: [https://github.com/MahinShahriar]
-
----
 
 Thank you for reviewing my portfolio!
