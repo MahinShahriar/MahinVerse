@@ -22,7 +22,6 @@ MahinVerse is a showcase of my professional journey, skills, and projects. Built
 - **Database**: [PostgreSQL]
 - **Deployment**: [Docker, Gunicorn, whitenoise]
 
-*(Please refer to the codebase for further technical details.)*
 
 ## Why MahinVerse?
 
