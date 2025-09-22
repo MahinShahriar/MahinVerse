@@ -2,10 +2,10 @@
 import os
 from pathlib import Path
 import dj_database_url
-
-# from dotenv import load_dotenv
-# # Initialise environment variables
-# load_dotenv()
+#
+from dotenv import load_dotenv
+# Initialise environment variables
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -89,6 +89,15 @@ if DB_URL:
     DATABASES["default"] = dj_database_url.parse(DB_URL)
 
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -134,8 +143,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 if not os.path.exists(STATIC_ROOT):
     os.makedirs(STATIC_ROOT)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'

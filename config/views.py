@@ -3,7 +3,7 @@ import time
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.mail import send_mail
-from django.conf import settings
+from django.core.cache import cache
 
 import json
 from MahinVerse.settings import JSON_FILE
@@ -24,6 +24,7 @@ def home_view(request):
                     {"name": "Django Rest Framework", "logo": "/img/django_rest_logo.png"},
                     {"name": "Flask", "logo": "/img/flask.png"},
                     {"name": "JavaScript", "logo": "/img/js_logo.png"},
+                    {"name": "Redis", "logo": "/img/redis_logo.png"},
                     {"name": "SQL", "logo": "/img/Sql.png"},
                     {"name": "PostgreSQL", "logo": "/img/postgresql.png"},
                     {"name": "MySQL", "logo": "/img/mysql.png"},
@@ -82,7 +83,11 @@ def home_view(request):
 
 
 def blog_view(request):
+    blog_posts = cache.get('all_posts')
+    if not blog_posts:
+        blog_posts = Blog.objects.all()
+        cache.set('all_posts', blog_posts, timeout=60*15)
     context = {
-        'posts': Blog.objects.all(),
+        'posts': blog_posts,
     }
     return render(request, 'blog.html', context=context)
