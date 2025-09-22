@@ -3,6 +3,7 @@ from django.db import models
 
 class Project(models.Model):
     title = models.CharField(max_length=200, unique=True)
+    # skills =
     image = models.ImageField(upload_to='projects')
     description = models.TextField()
     source_code = models.URLField(default='')
