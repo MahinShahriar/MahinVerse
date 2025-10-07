@@ -21,10 +21,9 @@
                     <article class="bg-white dark:bg-gray-600 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                         {% if post.img %}
                             <div class="relative overflow-hidden rounded-t-xl">
-                                <img src="{{ post.img.url}}">
-                                     alt="{{post.title}}"
+                                <img alt="{{post.title}}"
                                      class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-
+                                     src="{{ post.img.url}}">
                             </div>
                         {% endif %}
                         <div class="p-6">
